@@ -17,6 +17,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.gluttongk.open-source</groupId>
+            <artifactId>framework</artifactId>
+        </dependency>
 
     </dependencies>
 
