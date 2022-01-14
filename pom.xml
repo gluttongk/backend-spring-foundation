@@ -6,11 +6,53 @@
 
     <groupId>com.gluttongk.open-source</groupId>
     <artifactId>spring</artifactId>
+    <packaging>pom</packaging>
     <version>0.1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>framework</module>
+        <module>api</module>
+        <module>common</module>
+        <module>admin</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <project.common.module.version>0.1.0-SNAPSHOT</project.common.module.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- framework -->
+            <dependency>
+                <groupId>com.gluttongk.open-source</groupId>
+                <artifactId>framework</artifactId>
+                <version>${project.common.module.version}</version>
+            </dependency>
+
+            <!-- common -->
+            <dependency>
+                <groupId>com.gluttongk.open-source</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.common.module.version}</version>
+            </dependency>
+
+            <!-- api -->
+            <dependency>
+                <groupId>com.gluttongk.open-source</groupId>
+                <artifactId>api</artifactId>
+                <version>${project.common.module.version}</version>
+            </dependency>
+
+            <!-- admin -->
+            <dependency>
+                <groupId>com.gluttongk.open-source</groupId>
+                <artifactId>admin</artifactId>
+                <version>${project.common.module.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
 </project>
