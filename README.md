@@ -13,3 +13,4 @@ Here will provide common basic modules, as well as some common dependencies.
 - admin:
 
 ## common dependencies
+- spring-boot-starter-web
