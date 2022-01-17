@@ -1,16 +1,22 @@
 package example.endpoints;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import example.response.CommonResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@ResponseBody
 @RequestMapping("/api/eg")
 public class Endpoints {
 
-    @RequestMapping("/hello")
-    public String hello() {
-        return "Hello, World!";
+    @GetMapping("/hello")
+    @ResponseBody
+    public ResponseEntity<CommonResponse<Map<String, String>>> hello() {
+        Map<String, String> result = new HashMap<>();
+        result.put("message", "Hello World!");
+
+        return ResponseEntity.ok(CommonResponse.of(200, result));
     }
 }
