@@ -26,5 +26,7 @@ Here will provide common basic modules, as well as some common dependencies.
     "name": "test"
   }
 }
-
 ```
+
+-- mybatis-plus-boot-starter
+> 配置参考 [官网](https://baomidou.com/pages/56bac0/)
