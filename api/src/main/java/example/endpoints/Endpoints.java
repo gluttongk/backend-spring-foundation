@@ -3,6 +3,7 @@ package example.endpoints;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import example.mybaits_plus.domain.User;
 import example.mybaits_plus.mapper.UserMapper;
+import example.redis.RedisCache;
 import example.response.CommonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,12 @@ import java.util.Map;
 @RequestMapping("/api/eg")
 public class Endpoints {
     private final UserMapper userMapper;
+    private final RedisCache redisCache;
 
     @Autowired
-    public Endpoints(UserMapper userMapper) {
+    public Endpoints(UserMapper userMapper, RedisCache redisCache) {
         this.userMapper = userMapper;
+        this.redisCache = redisCache;
     }
 
     @GetMapping("/hello")
@@ -37,5 +40,19 @@ public class Endpoints {
         List<User> users = userMapper.selectList(new QueryWrapper<>());
 
         return ResponseEntity.ok(CommonResponse.of(users));
+    }
+
+    @GetMapping("/redis/set")
+    @ResponseBody
+    public ResponseEntity<String> redisSet() {
+        redisCache.setCacheObject("dev", "test");
+        return ResponseEntity.ok("success");
+    }
+
+    @GetMapping("/redis/get")
+    @ResponseBody
+    public ResponseEntity<String> redisGet() {
+        String result = redisCache.getCacheObject("dev");
+        return ResponseEntity.ok(result);
     }
 }
